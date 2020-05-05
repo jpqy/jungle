@@ -4,6 +4,10 @@
     <h1>User &raquo; Login</h1>
   </header>
 
+  <% if flash[:error] %>
+    <div class="alert alert-danger"><%= flash[:error] %></div>
+  <% end %>
+
   <div class="col-sm-6 col-sm-offset-1">
   
     <%= form_tag '/login' do %>
