@@ -33,4 +33,20 @@ RSpec.feature "Visitor can login", type: :feature, js: true do
 
     expect(page).to have_css ".alert"
   end
+
+  scenario "Correct login results in change in header for logged in context" do
+    visit login_path
+    expect(page).to have_field "email"
+
+    # Fill in field with correct credentials
+    fill_in 'email', with: "john@doe.com"
+    fill_in 'password', with: "password"
+    click_button 'Login'
+
+    # See name and Logout in nav bar
+    within "nav" do      
+      expect(page).to have_text "Logout"
+      expect(page).to have_text @user.first_name
+    end
+  end
 end
