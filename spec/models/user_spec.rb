@@ -72,9 +72,21 @@ RSpec.describe User, type: :model do
     it "authenticates if email and password are correct" do
       subject.save
       correct_user = User.authenticate_with_credentials("john@doe.com", "password")
-      expect(correct_user).to_not be_nil
+      expect(correct_user.email).to eq "john@doe.com"
       incorrect_user = User.authenticate_with_credentials("john@doe.com", "wrongpassword")
       expect(incorrect_user).to be_nil
+    end
+
+    it "should ignore whitespace around email when determining its validity" do
+      subject.save
+      whitespace_user = User.authenticate_with_credentials("  john@doe.com  ", "password")
+      expect(whitespace_user.email).to eq "john@doe.com"
+    end
+
+    it "should ignore case around email when determining its validity" do
+      subject.save
+      whitespace_user = User.authenticate_with_credentials("JOHN@doe.com", "password")
+      expect(whitespace_user.email).to eq "john@doe.com"
     end
   end
 end
