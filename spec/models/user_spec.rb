@@ -56,5 +56,15 @@ RSpec.describe User, type: :model do
       
       expect(user_with_same_email).to_not be_valid
     end
+
+    it "must have password length of 8 characters or more" do
+      subject.password = "1234567"
+      subject.password_confirmation = "1234567"
+      expect(subject).to_not be_valid
+
+      subject.password = "12345678"
+      subject.password_confirmation = "12345678"
+      expect(subject).to be_valid
+    end
   end
 end
