@@ -1,6 +1,10 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+A mini e-commerce application built with Rails 4.2 for purposes of learning Rails, ActiveRecords, and the MVC model.
+
+Deployed at https://jpqy-jungle.herokuapp.com/
+
+Image uploads are hosted with Cloudinary.
 
 
 ## Setup
